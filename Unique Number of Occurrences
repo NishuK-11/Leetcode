@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        // Step 1: Create a frequency map using unordered_map
+        unordered_map<int, int> freq_count;
+        
+        // Step 2: Count the frequency of each number in the array
+        for (int num : arr) {
+            freq_count[num]++;
+        }
+        
+        // Step 3: Use an unordered_set to check if the frequencies are unique
+        unordered_set<int> freq_set;
+        
+        for (auto& pair : freq_count) {
+            // If a frequency already exists in the set, return false
+            if (freq_set.find(pair.second) != freq_set.end()) {
+                return false;
+            }
+            // Otherwise, insert the frequency into the set
+            freq_set.insert(pair.second);
+        }
+        
+        // If all frequencies are unique, return true
+        return true;
+    }
+};
